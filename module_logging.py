@@ -1,9 +1,13 @@
 import logging
 
 
-def test_logging() -> None:
+def test_logging(filename: str | None, filemode: str | None, level: int = logging.INFO) -> None:
     logging.basicConfig(
-        level=logging.DEBUG,
+        filename=filename,
+        filemode=filemode,
+        level=level,
+        format="[%(levelname)8s][%(asctime)s.%(msecs)03d] %(message)s",
+        datefmt="%Y%m%d %H:%M:%S"
     )
 
     logging.debug("This is log for DEBUG")
