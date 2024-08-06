@@ -32,8 +32,8 @@ def load_h5(path_lib: str, bgn_date: str, stp_date: str, calendar: CCalendar) ->
 
 
 def main(root_dir: str, path_lib: str, bgn_date: str, stp_date: str, calendar: CCalendar):
-    # df_csv = load_csv(root_dir, bgn_date, stp_date, calendar)
-    # logger.info(f"Shape of csv = {df_csv.shape}")
+    df_csv = load_csv(root_dir, bgn_date, stp_date, calendar)
+    logger.info(f"Shape of csv = {df_csv.shape}")
     df_h5 = load_h5(path_lib, bgn_date, stp_date, calendar)
     logger.info(f"Shape of h5  = {df_h5.shape}")
     return 0
