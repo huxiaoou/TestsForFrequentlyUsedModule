@@ -16,4 +16,5 @@ df = test_fut_wsr(pro_api=pro_api, trade_date=trade_date)
 print(df)
 
 df = test_fut_holding(pro_api=pro_api, trade_date=trade_date)
+print(f"shape of data = {df.shape}")
 print(df.head())
