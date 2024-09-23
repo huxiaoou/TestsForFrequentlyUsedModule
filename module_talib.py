@@ -72,3 +72,16 @@ def test_sar(high: pd.Series | np.ndarray, low: pd.Series | np.ndarray) -> None:
 
     })
     print(macd_data.tail(20))
+
+
+def test_adx(high: pd.Series | np.ndarray, low: pd.Series | np.ndarray, close: pd.Series | np.ndarray) -> None:
+    adx = ta.ADX(high, low, close, timeperiod=10)
+    adxr = ta.ADXR(high, low, close, timeperiod=10)
+    data = pd.DataFrame({
+        "high": high,
+        "low": low,
+        "close": close,
+        "ta.adx": adx,
+        "ta.adxr": adxr,
+    })
+    print(data.tail(20))
