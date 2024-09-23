@@ -85,3 +85,20 @@ def test_adx(high: pd.Series | np.ndarray, low: pd.Series | np.ndarray, close: p
         "ta.adxr": adxr,
     })
     print(data.tail(20))
+
+
+def test_bop(
+        opn: pd.Series | np.ndarray,
+        high: pd.Series | np.ndarray,
+        low: pd.Series | np.ndarray,
+        close: pd.Series | np.ndarray
+) -> None:
+    bop = ta.BOP(opn, high, low, close)
+    data = pd.DataFrame({
+        "open": opn,
+        "close": close,
+        "high": high,
+        "low": low,
+        "ta.bop": bop,
+    })
+    print(data.tail(20))
