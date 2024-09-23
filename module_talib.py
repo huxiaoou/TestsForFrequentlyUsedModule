@@ -26,17 +26,6 @@ def test_sma(close: pd.Series | np.ndarray) -> None:
     print(df)
 
 
-def test_bbands(close: pd.Series | np.ndarray) -> None:
-    upper, middle, lower = ta.BBANDS(close, matype=ta.MA_Type.T3)
-    bbands = pd.DataFrame({
-        "close": close,
-        "upper": upper,
-        "mid": middle,
-        "lower": lower,
-    })
-    print(bbands)
-
-
 def test_macd(close: pd.Series | np.ndarray) -> None:
     fast = close.ewm(alpha=2 / (1 + 10)).mean()
     slow = close.ewm(alpha=2 / (1 + 20)).mean()
@@ -57,6 +46,21 @@ def test_macd(close: pd.Series | np.ndarray) -> None:
 
     })
     print(macd_data.tail(20))
+
+
+def test_bbands(close: pd.Series | np.ndarray) -> None:
+    upper, middle, lower = ta.BBANDS(close, timeperiod=10, nbdevup=2, nbdevdn=2, matype=0)
+    bbands = pd.DataFrame({
+        "close": close,
+        "ta.upper": upper,
+        "ta.mid": middle,
+        "ta.lower": lower,
+    })
+    bbands["sma"] = bbands["close"].rolling(window=10).mean()
+    bbands["std"] = bbands["close"].rolling(window=10).std(ddof=0)
+    bbands["upper"] = bbands["sma"] + 2 * bbands["std"]
+    bbands["lower"] = bbands["sma"] - 2 * bbands["std"]
+    print(bbands.head(20))
 
 
 def test_sar(high: pd.Series | np.ndarray, low: pd.Series | np.ndarray) -> None:

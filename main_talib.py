@@ -15,9 +15,9 @@ if __name__ == "__main__":
     })
     price["high"] = price[["p0", "p1"]].max(axis=1)
     price["low"] = price[["p0", "p1"]].min(axis=1)
-    print(price)
+    # print(price)
 
     test_sma(close)
-    test_bbands(close)
     test_macd(close)
+    test_bbands(close)
     test_sar(high=price["high"], low=price["low"])
